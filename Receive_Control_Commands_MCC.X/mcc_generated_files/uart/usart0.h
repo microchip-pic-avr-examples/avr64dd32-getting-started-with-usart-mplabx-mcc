@@ -7,10 +7,10 @@
  * 
  * @brief This file contains API prototypes and other datatypes for USART0 module.
  *
- * @version USART0 Driver Version 2.0.0
+ * @version USART0 Driver Version 2.0.3
 */
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -65,12 +65,13 @@
 
 #define UART0_TransmitEnable       USART0_TransmitEnable
 #define UART0_TransmitDisable      USART0_TransmitDisable
-#define UART0_AutoBaudSet          (NULL)
-#define UART0_AutoBaudQuery        (NULL)
-#define UART0_BRGSet               (NULL)
-#define UART0_BRGGet               (NULL)
-#define UART0_BaudSet              (NULL)
-#define UART0_BaudGet              (NULL)
+#define UART0_AutoBaudSet          USART0_AutoBaudSet
+#define UART0_AutoBaudQuery        USART0_AutoBaudQuery
+#define UART0_BRGCountSet               (NULL)
+#define UART0_BRGCountGet               (NULL)
+#define UART0_BaudRateSet               (NULL)
+#define UART0_BaudRateGet               (NULL)
+#define UART0__AutoBaudEventEnableGet   (NULL)
 #define UART0_ErrorGet             USART0_ErrorGet
 
 #define UART0_TxCompleteCallbackRegister     (NULL)
@@ -180,6 +181,38 @@ void USART0_ReceiveEnable(void);
 void USART0_ReceiveDisable(void);
 
 
+
+/**
+ * @ingroup usart0
+ * @brief This API enables the USART0 AutoBaud Detection.
+ * @param bool enable.
+ * @return None.
+ */
+void USART0_AutoBaudSet(bool enable);
+
+/**
+ * @ingroup usart0
+ * @brief This API reads the USART0 AutoBaud Detection Complete bit.
+ * @param None.
+ * @return None.
+ */
+bool USART0_AutoBaudQuery(void);
+
+/**
+ * @ingroup usart0
+ * @brief This API reads the USART0 AutoBaud Detection error bit.
+ * @param None.
+ * @return None.
+ */
+bool USART0_IsAutoBaudDetectError(void);
+
+/**
+ * @ingroup usart0
+ * @brief This API Reset the USART0 AutoBaud Detection error bit.
+ * @param None.
+ * @return None.
+ */
+void USART0_AutoBaudDetectErrorReset(void);
 
 /**
  * @ingroup usart0

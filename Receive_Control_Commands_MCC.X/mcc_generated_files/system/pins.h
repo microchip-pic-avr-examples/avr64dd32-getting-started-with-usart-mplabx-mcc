@@ -8,11 +8,11 @@
  * @brief This is generated driver header for pins. 
  *        This header file provides APIs for all pins selected in the GUI.
  *
- * @version Driver Version  1.0.1
+ * @version Driver Version  1.1.0
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -55,6 +55,7 @@
 #define RX_EnableInterruptForFallingEdge() do { PORTD.PIN5CTRL = (PORTD.PIN5CTRL & ~PORT_ISC_gm) | 0x3 ; } while(0)
 #define RX_DisableDigitalInputBuffer() do { PORTD.PIN5CTRL = (PORTD.PIN5CTRL & ~PORT_ISC_gm) | 0x4 ; } while(0)
 #define RX_EnableInterruptForLowLevelSensing() do { PORTD.PIN5CTRL = (PORTD.PIN5CTRL & ~PORT_ISC_gm) | 0x5 ; } while(0)
+#define PD5_SetInterruptHandler RX_SetInterruptHandler
 
 //get/set TX aliases
 #define TX_SetHigh() do { PORTD_OUTSET = 0x10; } while(0)
@@ -73,6 +74,7 @@
 #define TX_EnableInterruptForFallingEdge() do { PORTD.PIN4CTRL = (PORTD.PIN4CTRL & ~PORT_ISC_gm) | 0x3 ; } while(0)
 #define TX_DisableDigitalInputBuffer() do { PORTD.PIN4CTRL = (PORTD.PIN4CTRL & ~PORT_ISC_gm) | 0x4 ; } while(0)
 #define TX_EnableInterruptForLowLevelSensing() do { PORTD.PIN4CTRL = (PORTD.PIN4CTRL & ~PORT_ISC_gm) | 0x5 ; } while(0)
+#define PD4_SetInterruptHandler TX_SetInterruptHandler
 
 //get/set LED aliases
 #define LED_SetHigh() do { PORTF_OUTSET = 0x20; } while(0)
@@ -91,6 +93,7 @@
 #define LED_EnableInterruptForFallingEdge() do { PORTF.PIN5CTRL = (PORTF.PIN5CTRL & ~PORT_ISC_gm) | 0x3 ; } while(0)
 #define LED_DisableDigitalInputBuffer() do { PORTF.PIN5CTRL = (PORTF.PIN5CTRL & ~PORT_ISC_gm) | 0x4 ; } while(0)
 #define LED_EnableInterruptForLowLevelSensing() do { PORTF.PIN5CTRL = (PORTF.PIN5CTRL & ~PORT_ISC_gm) | 0x5 ; } while(0)
+#define PF5_SetInterruptHandler LED_SetInterruptHandler
 
 /**
  * @ingroup  pinsdriver
@@ -102,64 +105,64 @@ void PIN_MANAGER_Initialize();
 
 /**
  * @ingroup  pinsdriver
- * @brief Default Interrupt Handler for PD5 pin. 
- *        This is a predefined interrupt handler to be used together with the PD5_SetInterruptHandler() method.
- *        This handler is called every time the PD5 ISR is executed. 
+ * @brief Default Interrupt Handler for RX pin. 
+ *        This is a predefined interrupt handler to be used together with the RX_SetInterruptHandler() method.
+ *        This handler is called every time the RX ISR is executed. 
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param none
  * @return none
  */
-void PD5_DefaultInterruptHandler(void);
+void RX_DefaultInterruptHandler(void);
 
 /**
  * @ingroup  pinsdriver
- * @brief Interrupt Handler Setter for PD5 pin input-sense-config functionality.
- *        Allows selecting an interrupt handler for PD5 at application runtime
+ * @brief Interrupt Handler Setter for RX pin input-sense-config functionality.
+ *        Allows selecting an interrupt handler for RX at application runtime
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param InterruptHandler function pointer.
  * @return none
  */
-void PD5_SetInterruptHandler(void (* interruptHandler)(void)) ; 
+void RX_SetInterruptHandler(void (* interruptHandler)(void)) ; 
 
 /**
  * @ingroup  pinsdriver
- * @brief Default Interrupt Handler for PD4 pin. 
- *        This is a predefined interrupt handler to be used together with the PD4_SetInterruptHandler() method.
- *        This handler is called every time the PD4 ISR is executed. 
+ * @brief Default Interrupt Handler for TX pin. 
+ *        This is a predefined interrupt handler to be used together with the TX_SetInterruptHandler() method.
+ *        This handler is called every time the TX ISR is executed. 
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param none
  * @return none
  */
-void PD4_DefaultInterruptHandler(void);
+void TX_DefaultInterruptHandler(void);
 
 /**
  * @ingroup  pinsdriver
- * @brief Interrupt Handler Setter for PD4 pin input-sense-config functionality.
- *        Allows selecting an interrupt handler for PD4 at application runtime
+ * @brief Interrupt Handler Setter for TX pin input-sense-config functionality.
+ *        Allows selecting an interrupt handler for TX at application runtime
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param InterruptHandler function pointer.
  * @return none
  */
-void PD4_SetInterruptHandler(void (* interruptHandler)(void)) ; 
+void TX_SetInterruptHandler(void (* interruptHandler)(void)) ; 
 
 /**
  * @ingroup  pinsdriver
- * @brief Default Interrupt Handler for PF5 pin. 
- *        This is a predefined interrupt handler to be used together with the PF5_SetInterruptHandler() method.
- *        This handler is called every time the PF5 ISR is executed. 
+ * @brief Default Interrupt Handler for LED pin. 
+ *        This is a predefined interrupt handler to be used together with the LED_SetInterruptHandler() method.
+ *        This handler is called every time the LED ISR is executed. 
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param none
  * @return none
  */
-void PF5_DefaultInterruptHandler(void);
+void LED_DefaultInterruptHandler(void);
 
 /**
  * @ingroup  pinsdriver
- * @brief Interrupt Handler Setter for PF5 pin input-sense-config functionality.
- *        Allows selecting an interrupt handler for PF5 at application runtime
+ * @brief Interrupt Handler Setter for LED pin input-sense-config functionality.
+ *        Allows selecting an interrupt handler for LED at application runtime
  * @pre PIN_MANAGER_Initialize() has been called at least once
  * @param InterruptHandler function pointer.
  * @return none
  */
-void PF5_SetInterruptHandler(void (* interruptHandler)(void)) ; 
+void LED_SetInterruptHandler(void (* interruptHandler)(void)) ; 
 #endif /* PINS_H_INCLUDED */

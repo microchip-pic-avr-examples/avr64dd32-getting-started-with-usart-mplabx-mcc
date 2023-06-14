@@ -7,11 +7,11 @@
  * 
  * @brief This is the generated driver implementation file for the USART0 driver using 
  *
- * @version USART0 Driver Version 2.0.0
+ * @version USART0 Driver Version 2.0.3
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -57,12 +57,13 @@ const uart_drv_interface_t UART0 = {
     .IsTxDone = &USART0_IsTxDone,
     .TransmitEnable = &USART0_TransmitEnable,
     .TransmitDisable = &USART0_TransmitDisable,
-    .AutoBaudSet = NULL,
-    .AutoBaudQuery = NULL,
-    .BRGSet = NULL,
-    .BRGGet = NULL,
-    .BaudSet = NULL,
-    .BaudGet = NULL,
+    .AutoBaudSet = &USART0_AutoBaudSet,
+    .AutoBaudQuery = &USART0_AutoBaudQuery,
+    .BRGCountSet = NULL,
+    .BRGCountGet = NULL,
+    .BaudRateSet = NULL,
+    .BaudRateGet = NULL,
+    .AutoBaudEventEnableGet = NULL,
     .ErrorGet = &USART0_ErrorGet,
     .TxCompleteCallbackRegister = NULL,
     .RxCompleteCallbackRegister = NULL,
@@ -169,6 +170,43 @@ void USART0_ReceiveEnable(void)
 void USART0_ReceiveDisable(void)
 {
     USART0.CTRLB &= ~(USART_RXEN_bm); 
+}
+
+void USART0_AutoBaudSet(bool enable)
+{
+    if(enable)
+    {
+        USART0.CTRLB |= USART_RXMODE_gm & (0x02 << USART_RXMODE_gp); 
+        USART0.STATUS |= USART_WFB_bm ; 
+    }
+    else
+    {
+       USART0.CTRLB &= ~(USART_RXMODE_gm); 
+       USART0.STATUS &= ~(USART_BDF_bm);  
+    }
+}
+
+bool USART0_AutoBaudQuery(void)
+{
+     return (bool)(USART0.STATUS & USART_BDF_bm) ; 
+}
+
+bool USART0_IsAutoBaudDetectError(void)
+{
+     return (bool)(USART0.STATUS & USART_ISFIF_bm) ; 
+}
+
+void USART0_AutoBaudDetectErrorReset(void)
+{
+    USART0.STATUS |= USART_ISFIF_bm ;
+	USART0_AutoBaudSet(false);
+    USART0_ReceiveDisable();
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    asm("nop");
+    USART0_ReceiveEnable();
+    USART0_AutoBaudSet(true);
 }
 
 bool USART0_IsRxReady(void)

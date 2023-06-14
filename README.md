@@ -20,17 +20,16 @@ More details and code examples on the AVR64DD32 can be found at the following li
 
 ## Software Used
 
-- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.00 or newer
-- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.36 or newer
-- [AVR-Dx Series Device Pack](https://packs.download.microchip.com/) v2.1.152 or newer
-- [MPLAB® Code Configurator Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody) v2.1.13 or newer
-- AVR Devices Library v4.4.0 or newer
-- Content Manager v2.3.7 or newer
+- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.10 or newer
+- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.41 or newer
+- [AVR-Dx Series Device Pack](https://packs.download.microchip.com/) v2.3.272 or newer
+- [MPLAB® Code Configurator Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody) v2.5.0 or newer
+- AVR Devices Library v4.7.0 or newer
 
 ## Hardware Used
 
 - Logic Analyzer
-- The AVR64DD32 Curiosity Nano Development Board is used as a test platform
+- The [AVR64DD32 Curiosity Nano Development Board](https://www.microchip.com/en-us/development-tool/EV72Y42A) is used as a test platform
   <br><img src="images/AVR64DD32.PNG" width="640">
 
 ## Operation
@@ -96,6 +95,7 @@ The following configurations must be made for this project:
 	- no parity bit
 	- 1 stop bit
 	- TX pin enabled (PD4)
+	- Redirect Printf to UART - enable
 
  | Pin                     | Configuration      |
  | :---------------------: | :----------------: |

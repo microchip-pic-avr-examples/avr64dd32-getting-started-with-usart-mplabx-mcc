@@ -8,11 +8,11 @@
  * @brief This is generated driver implementation for pins. 
  *        This file provides implementations for pin APIs for all pins selected in the GUI.
  *
- * @version Driver Version 1.0.1
+ * @version Driver Version 1.1.0
 */
 
 /*
-© [2022] Microchip Technology Inc. and its subsidiaries.
+© [2023] Microchip Technology Inc. and its subsidiaries.
 
     Subject to your compliance with these terms, you may use Microchip 
     software and any derivatives exclusively with Microchip products. 
@@ -34,9 +34,9 @@
 
 #include "../pins.h"
 
-static void (*PD5_InterruptHandler)(void);
-static void (*PD4_InterruptHandler)(void);
-static void (*PF5_InterruptHandler)(void);
+static void (*RX_InterruptHandler)(void);
+static void (*TX_InterruptHandler)(void);
+static void (*LED_InterruptHandler)(void);
 
 void PIN_MANAGER_Initialize()
 {
@@ -97,49 +97,49 @@ void PIN_MANAGER_Initialize()
     PORTMUX.USARTROUTEA = 0x3;
 
   // register default ISC callback functions at runtime; use these methods to register a custom function
-    PD5_SetInterruptHandler(PD5_DefaultInterruptHandler);
-    PD4_SetInterruptHandler(PD4_DefaultInterruptHandler);
-    PF5_SetInterruptHandler(PF5_DefaultInterruptHandler);
+    RX_SetInterruptHandler(RX_DefaultInterruptHandler);
+    TX_SetInterruptHandler(TX_DefaultInterruptHandler);
+    LED_SetInterruptHandler(LED_DefaultInterruptHandler);
 }
 
 /**
-  Allows selecting an interrupt handler for PD5 at application runtime
+  Allows selecting an interrupt handler for RX at application runtime
 */
-void PD5_SetInterruptHandler(void (* interruptHandler)(void)) 
+void RX_SetInterruptHandler(void (* interruptHandler)(void)) 
 {
-    PD5_InterruptHandler = interruptHandler;
+    RX_InterruptHandler = interruptHandler;
 }
 
-void PD5_DefaultInterruptHandler(void)
+void RX_DefaultInterruptHandler(void)
 {
-    // add your PD5 interrupt custom code
-    // or set custom function using PD5_SetInterruptHandler()
+    // add your RX interrupt custom code
+    // or set custom function using RX_SetInterruptHandler()
 }
 /**
-  Allows selecting an interrupt handler for PD4 at application runtime
+  Allows selecting an interrupt handler for TX at application runtime
 */
-void PD4_SetInterruptHandler(void (* interruptHandler)(void)) 
+void TX_SetInterruptHandler(void (* interruptHandler)(void)) 
 {
-    PD4_InterruptHandler = interruptHandler;
+    TX_InterruptHandler = interruptHandler;
 }
 
-void PD4_DefaultInterruptHandler(void)
+void TX_DefaultInterruptHandler(void)
 {
-    // add your PD4 interrupt custom code
-    // or set custom function using PD4_SetInterruptHandler()
+    // add your TX interrupt custom code
+    // or set custom function using TX_SetInterruptHandler()
 }
 /**
-  Allows selecting an interrupt handler for PF5 at application runtime
+  Allows selecting an interrupt handler for LED at application runtime
 */
-void PF5_SetInterruptHandler(void (* interruptHandler)(void)) 
+void LED_SetInterruptHandler(void (* interruptHandler)(void)) 
 {
-    PF5_InterruptHandler = interruptHandler;
+    LED_InterruptHandler = interruptHandler;
 }
 
-void PF5_DefaultInterruptHandler(void)
+void LED_DefaultInterruptHandler(void)
 {
-    // add your PF5 interrupt custom code
-    // or set custom function using PF5_SetInterruptHandler()
+    // add your LED interrupt custom code
+    // or set custom function using LED_SetInterruptHandler()
 }
 ISR(PORTA_PORT_vect)
 { 
@@ -158,11 +158,11 @@ ISR(PORTD_PORT_vect)
     // Call the interrupt handler for the callback registered at runtime
     if(VPORTD.INTFLAGS & PORT_INT5_bm)
     {
-       PD5_InterruptHandler(); 
+       RX_InterruptHandler(); 
     }
     if(VPORTD.INTFLAGS & PORT_INT4_bm)
     {
-       PD4_InterruptHandler(); 
+       TX_InterruptHandler(); 
     }
     /* Clear interrupt flags */
     VPORTD.INTFLAGS = 0xff;
@@ -173,7 +173,7 @@ ISR(PORTF_PORT_vect)
     // Call the interrupt handler for the callback registered at runtime
     if(VPORTF.INTFLAGS & PORT_INT5_bm)
     {
-       PF5_InterruptHandler(); 
+       LED_InterruptHandler(); 
     }
     /* Clear interrupt flags */
     VPORTF.INTFLAGS = 0xff;
