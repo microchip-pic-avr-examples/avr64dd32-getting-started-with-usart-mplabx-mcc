@@ -4,27 +4,27 @@
     "content": {
         "metaDataVersion": "1.3.0",
         "name": "com.microchip.mcu8.mplabx.project.avr64dd32-getting-started-with-usart-mplabx-mcc",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "displayName": "Getting Started with USART Using the AVR64DD32 Microcontroller using MCC Melody",
         "projectName": "avr64dd32-getting-started-with-usart-mplabx-mcc",
         "shortDescription": "Getting Started with USART on AVR64DD32 using MCC Melody",
         "ide": {
             "name": "MPLAB X",
-            "semverRange": ">=6.0.0"
+            "semverRange": ">=6.10.0"
         },
         "compiler": [
             {
                 "name": "XC8",
-                "semverRange": "^2.36.0"
+                "semverRange": "^2.41.0"
             }
         ],
         "dfp": {
             "name": "AVR-Dx_DFP",
-            "semverRange": "^2.1.152"
+            "semverRange": "^2.3.272"
         },
         "configurator": {
             "name": "MCC",
-            "semverRange": ">=5.1.1"
+            "semverRange": ">=5.3.7"
         },
         "device": {
             "metaDataVersion": "1.0.0",
