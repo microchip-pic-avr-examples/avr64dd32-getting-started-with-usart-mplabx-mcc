@@ -20,10 +20,10 @@ More details and code examples on the AVR64DD32 can be found at the following li
 
 ## Software Used
 
-- [MPLAB® X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.10 or newer
-- [MPLAB® XC8](http://www.microchip.com/mplab/compilers) v2.41 or newer
+- [MPLAB X IDE](http://www.microchip.com/mplab/mplab-x-ide) v6.10 or newer
+- [MPLAB XC8](http://www.microchip.com/mplab/compilers) v2.41 or newer
 - [AVR-Dx Series Device Pack](https://packs.download.microchip.com/) v2.3.272 or newer
-- [MPLAB® Code Configurator Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody) v2.5.0 or newer
+- [MPLAB Code Configurator Melody](https://www.microchip.com/en-us/tools-resources/configure/mplab-code-configurator/melody) v2.5.0 or newer
 - AVR Devices Library v4.7.0 or newer
 
 ## Hardware Used
@@ -34,11 +34,11 @@ More details and code examples on the AVR64DD32 can be found at the following li
 
 ## Operation
 
-To program the Curiosity Nano board with this MPLAB® X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
+To program the Curiosity Nano board with this MPLAB X project, follow the steps provided in the [How to Program the Curiosity Nano Board](#how-to-program-the-curiosity-nano-board) chapter.<br><br>
 
 ## 1. Receive Control Commands
 
-This project shows how to use USART to implement a command-line interface. This way, the microcontroller can receive control commands via USART. It is convenient to use the line terminator `\n\r` as a command delimiter so that USART will read complete lines. The application can decode:
+This project shows how to use USART to implement a command-line interface. This way, the microcontroller can receive control commands via USART. It is recommended to use the line terminator `\n\r` as a command delimiter for the USART to read complete lines. The application can decode:
 
 - the `ON` command, and it will turn on the LED and reply with `OK, LED ON.\n\r`
 - the `OFF` command, and it will turn off the LED and reply with `OK, LED OFF.\n\r`
@@ -109,7 +109,7 @@ In this demo, the value of an increasing floating-point counter is transmitted i
 
 ### 2.3 Summary
 
-This project shows how to use the USART peripheral to send formatted strings.
+This project shows how to use the Universal Synchronous/Asynchronous Receiver/Transmitter (USART) peripheral to send formatted strings.
 
 [Back to top](#getting-started-with-usart-using-the-avr64dd32-microcontroller-using-mcc-melody)<br>
 
@@ -151,11 +151,11 @@ This project shows how to send a string via serial communication using the USART
 
 ## How to Program the Curiosity Nano Board
 
-This chapter shows how to use the MPLAB® X IDE to program an AVR® device with an Example_Project.X. This can be applied to any other projects.
+This chapter shows how to use the MPLAB X IDE to program an AVR® device with an Example_Project.X. This can be applied to any other projects.
 
 - Connect the board to the PC
 
-- Open the Example_Project.X project in MPLAB® X IDE
+- Open the Example_Project.X project in MPLAB X IDE
 
 - Set the Example_Project.X project as main project
 
